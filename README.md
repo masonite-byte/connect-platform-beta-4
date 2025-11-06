@@ -3,7 +3,7 @@
 **Project 2 - ENGR 1340**
 
 ## Team Name/Number
-Project 2 Team Beta 4
+Team Beta 4
 
 ## Team Members
 -   **Reece Davis**
