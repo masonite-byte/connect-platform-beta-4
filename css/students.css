@@ -1,0 +1,149 @@
+:root {
+  --tt-red: #cc0000;
+
+  --bg: #18191a;
+  --bg-card: #242526;
+  --bg-header: #242526;
+
+  --text-primary: #e4e6eb;
+  --text-secondary: #b0b3b8;
+
+  --border: #3a3b3c;
+
+  --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.2);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.3),
+               0 2px 4px -2px rgb(0 0 0 / 0.3);
+
+  --radius-md: 8px;
+  --radius-lg: 12px;
+}
+
+body {
+  background: var(--bg);
+  font-family: "Inter", sans-serif;
+  color: var(--text-primary);
+  margin: 0;
+  padding: 0;
+}
+
+.page-header {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  padding: 1rem 2rem;
+  background: var(--bg-header);
+  border-bottom: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.logo-title {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+  text-decoration: none;
+  color: var(--text-primary);
+}
+
+.logo-title img {
+  height: 40px;
+}
+
+.nav-links-desktop {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.nav-link {
+  padding: 0.5rem 0;
+  font-weight: 500;
+  color: var(--text-secondary);
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+  transition: 0.2s;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: var(--tt-red);
+  border-bottom-color: var(--tt-red);
+}
+
+.login-button {
+  background-color: #3A3B3C;
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  justify-self: end;
+  padding: 10px 15px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.login-button:hover {
+  background: var(--tt-red);
+  border-color: #990000;
+}
+
+.students h1 {
+  margin: 0 auto 1rem auto;
+  font-size: 2rem;
+  text-decoration-line: underline;
+  text-decoration-color: #cc0000;
+  text-decoration-thickness: 3px;
+  text-underline-offset: 6px;
+}
+
+
+.search-header {
+  display: flex;
+  align-items: left; 
+  justify-content: left;
+  margin-left: 2rem;
+  margin-bottom: 2rem;
+}
+
+.search-header h1 {
+  margin: 0; 
+  margin-left: 30px;
+  margin-right: 10px;
+  font-size: 2rem;
+  text-decoration-line: underline;
+  text-decoration-color: #cc0000;
+  text-decoration-thickness: 3px;
+  text-underline-offset: 6px;
+}
+
+.searchbar {
+  display: block; 
+  padding: 0;
+  margin-top: 0;
+  margin-left: 30px;
+  margin-bottom: 0;
+}
+
+.searchbar input {
+    height: 40px;
+    width: 750px;
+    background-color: var(--bg-card);
+    border: none;
+    border-radius: 10px;
+    color: var(--text-primary);
+    padding-left: 15px;
+}
+
+.students {
+  padding: 3rem 1rem 0;
+  text-align: center; 
+}
+
+.searchbar input::placeholder {
+  color: var(--text-secondary);
+}
