@@ -308,3 +308,273 @@
     text-align: center;
   }
 }
+
+.app-header {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: var(--header-background);
+  border-bottom: 1px solid var(--border-color);
+  box-shadow: var(--shadow-sm);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  justify-self: start;
+  text-decoration: none;
+}
+
+.logo-container img {
+  height: 40px;
+}
+
+.nav-links-desktop {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+  justify-self: center;
+}
+
+.nav-link {
+  padding: 0.5rem 0;
+  font-weight: 500;
+  color: var(--text-secondary);
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.nav-link.active,
+.nav-link:hover {
+  color: var(--tt-red);
+  border-bottom-color: var(--tt-red);
+}
+
+.user-actions {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  justify-self: end;
+}
+
+.menu-button-mobile {
+  display: none;
+  justify-self: end;
+  background: none;
+  border: 0;
+  padding: .25rem;
+  cursor: pointer;
+  line-height: 0;
+  color: var(--text-primary);
+}
+
+.nav-links-mobile {
+  display: none;
+  flex-direction: column;
+  gap: 1rem;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  width: 250px;
+  padding: 1rem;
+  background-color: var(--header-background);
+  border: 1px solid var(--border-color);
+  border-top: none;
+  border-radius: 0 0 var(--radius-md) var(--radius-md);
+  box-shadow: var(--shadow-md);
+}
+
+.nav-link-mobile-item {
+  display: block;
+  width: 100%;
+  font-weight: 500;
+  color: var(--text-secondary);
+  text-decoration: none;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.nav-link-mobile-item:hover {
+  color: var(--tt-red);
+}
+
+.mobile-menu-btn {
+  width: 100%;
+  font-weight: 600;
+  text-align: center;
+}
+
+@media (max-width: 1024px) {
+  .app-header {
+    padding: .75rem 1rem;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .nav-links-desktop,
+  .user-actions {
+    display: none;
+  }
+
+  .menu-button-mobile {
+    display: block;
+  }
+
+
+  .logo-container {
+    font-size: 0.9rem;
+  }
+
+  .logo-container img {
+    height: 32px;
+  }
+}
+
+/* For login/signup modal */
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: none;
+  /* this is important bc in normal html, you have hide your modals and manually display them using js*/
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background-color: var(--card-background);
+  padding: 2rem;
+  border-radius: var(--radius-lg);
+  width: 90%;
+  max-width: 450px;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border-color);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.modal-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.close-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  color: var(--text-secondary);
+  font-size: 1.5rem;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  color: var(--text-secondary);
+}
+
+.form-group input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-primary);
+}
+
+.modal-footer {
+  margin-top: 1.5rem;
+  text-align: right;
+}
+
+.toggle-auth {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.toggle-auth button {
+  background: none;
+  border: none;
+  color: var(--tt-red);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.error-message {
+  color: var(--tt-red);
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.account-type-toggle {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.btn {
+  padding: 0.6rem 0.6rem;
+  border-radius: var(--radius-md);
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.2s, color 0.2s;
+  font-size: 0.8rem;
+}
+
+.btn-primary {
+  background-color: var(--tt-red);
+  color: white;
+}
+
+.btn-secondary {
+  background-color: #3A3B3C;
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+}
+
+.btn-microsoft {
+  background-color: #2F2F2F;
+  color: white;
+  border: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.75rem 0.6rem;
+}
+
+.btn-microsoft:hover {
+  background-color: #3a3a3a;
+}

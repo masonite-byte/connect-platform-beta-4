@@ -8,20 +8,84 @@
   </head>
 
   <body>
-    <header class="page-header">
-      <a class="logo-title" href="index.html">
-        <img src="images/ttu.png" alt="TTU Logo" />
-        <p>Red Raider JobConnect</p>
-      </a>
+    	<header class="app-header">
+		<a class="logo-container" href="/index.html">
+			<img src="images/ttu.png" alt="Texas Tech Logo" />
+			<span>Red Raider JobConnect</span>
+		</a>
+		<nav class="nav-links-desktop">
+			<a href="students.html" class="nav-link">Students</a>
+			<a href="jobs.html" class="nav-link">Jobs</a>
+			<a href="companies.html" class="nav-link">Companies</a>
+		</nav>
 
-      <nav class="nav-links-desktop">
-        <a href="students.html" class="nav-link">Students</a>
-        <a href="jobs.html" class="nav-link">Jobs</a>
-        <a href="companies.html" class="nav-link">Companies</a>
-      </nav>
+		<div class="user-actions">
+			<button class="btn btn-secondary" id="login-modal-btn">Login</button>
+		</div>
 
-      <button class="login-button" id="login-modal-btn">Login</button>
-    </header>
+		<div class="menu-button-mobile">
+			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+				stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+				<line x1="3" y1="12" x2="21" y2="12"></line>
+				<line x1="3" y1="6" x2="21" y2="6"></line>
+				<line x1="3" y1="18" x2="21" y2="18"></line>
+			</svg>
+		</div>
+	</header>
+
+	<div id="auth-modal" class="modal-overlay">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h2 class="modal-title" id="modal-title">Log In</h2>
+				<button class="close-button" id="modal-close-btn">
+					<span style="line-height: 1;">&times;</span> </button>
+			</div>
+			<div class="account-type-toggle">
+				<label>
+					<input type="radio" name="accountTypeModal" value="student" checked id="radio-student" />
+					Student
+				</label>
+				<label>
+					<input type="radio" name="accountTypeModal" value="company" id="radio-company" /> Company
+				</label>
+			</div>
+
+			<div id="student-content">
+				<div style="text-align: center;">
+					<p>Students, please sign in using your official Texas Tech Outlook account.</p>
+					<button class="btn btn-microsoft">
+						<svg width="20" height="20" viewBox="0 0 21 21">
+							<path fill="#f25022" d="M1 1h9v9H1z"></path>
+							<path fill="#00a4ef" d="M1 11h9v9H1z"></path>
+							<path fill="#7fba00" d="M11 1h9v9h-9z"></path>
+							<path fill="#ffb900" d="M11 11h9v9h-9z"></path>
+						</svg>
+						Sign in with Microsoft
+					</button>
+				</div>
+			</div>
+
+			<form id="company-form" style="display: none;">
+				<div class="form-group" id="company-name-group" style="display: none;"><label>Company
+						Name</label><input type="text" name="name" /></div>
+
+				<div class="form-group"><label>Email</label><input type="email" name="email" required /></div>
+				<div class="form-group"><label>Password</label><input type="password" name="password" required />
+				</div>
+				<p class="error-message" id="error-message" style="display: none;">Simulated login error.</p>
+				<div class="modal-footer">
+					<button type="submit" class="btn btn-primary" id="submit-btn">Log In</button>
+				</div>
+			</form>
+
+			<div class="toggle-auth">
+				Don't have an account?
+				<button id="switch-mode-btn">Sign Up</button>
+			</div>
+		</div>
+	</div>
+
+	</div>
 
     <div class="job-select">
       <h1>Job Opportunities</h1>
@@ -196,5 +260,110 @@
         </div>
       </div>
     </footer>
+
+
+    <!-- ---javascript--- -->
+
+    	<script>
+		const authModal = document.getElementById('auth-modal');
+		const loginButtons = [
+			document.getElementById('login-modal-btn'),
+			document.getElementById('mobile-login-btn')
+		];
+		const closeBtn = document.getElementById('modal-close-btn');
+		const modalOverlay = document.getElementById('auth-modal');
+		const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+		const mobileNavLinks = document.getElementById('mobile-nav-links');
+		const menuIcon = document.getElementById('menu-icon');
+
+		const radioStudent = document.getElementById('radio-student');
+		const radioCompany = document.getElementById('radio-company');
+		const studentContent = document.getElementById('student-content');
+		const companyForm = document.getElementById('company-form');
+		const switchModeBtn = document.getElementById('switch-mode-btn');
+		const modalTitle = document.getElementById('modal-title');
+		const submitBtn = document.getElementById('submit-btn');
+		const companyNameGroup = document.getElementById('company-name-group');
+
+		let isLoginMode = true;
+		let currentAccountType = 'student';
+		let isMobileMenuOpen = false;
+
+
+		function showModal() {
+			authModal.style.display = 'flex';
+		}
+
+		function hideModal() {
+			authModal.style.display = 'none';
+		}
+
+
+		function updateModalContent() {
+			modalTitle.textContent = isLoginMode ? 'Log In' : 'Sign Up';
+			submitBtn.textContent = isLoginMode ? 'Log In' : 'Create Account';
+			switchModeBtn.textContent = isLoginMode ? 'Sign Up' : 'Log In';
+
+			const toggleAuthDiv = switchModeBtn.parentNode;
+			toggleAuthDiv.firstChild.textContent = isLoginMode ? "Don't have an account?" : "Already have an account?";
+
+			// student vs company views
+			if (currentAccountType === 'student') {
+				studentContent.style.display = 'block';
+				companyForm.style.display = 'none';
+			} else {
+				studentContent.style.display = 'none';
+				companyForm.style.display = 'block';
+
+				companyNameGroup.style.display = isLoginMode ? 'none' : 'block';
+				companyNameGroup.querySelector('input').required = !isLoginMode;
+			}
+		}
+
+		loginButtons.forEach(btn => btn?.addEventListener('click', () => {
+			isLoginMode = true;
+			currentAccountType = 'student'; // by default we can pretty much assume a student is trying to login, in the future we might want to standardize this more?
+			radioStudent.checked = true;
+			updateModalContent();
+			showModal();
+		}));
+
+		closeBtn?.addEventListener('click', hideModal);
+
+		modalOverlay?.addEventListener('click', (e) => {
+			if (e.target === modalOverlay) {
+				hideModal();
+			}
+		});
+
+		switchModeBtn?.addEventListener('click', () => {
+			isLoginMode = !isLoginMode;
+			updateModalContent();
+		});
+
+		radioStudent?.addEventListener('change', () => {
+			currentAccountType = 'student';
+			updateModalContent();
+		});
+
+		radioCompany?.addEventListener('change', () => {
+			currentAccountType = 'company';
+			updateModalContent();
+		});
+
+		mobileMenuBtn?.addEventListener('click', () => {
+			isMobileMenuOpen = !isMobileMenuOpen;
+			mobileNavLinks.style.display = isMobileMenuOpen ? 'flex' : 'none';
+			menuIcon.textContent = isMobileMenuOpen ? 'X' : '☰';
+		});
+
+		companyForm?.addEventListener('submit', (e) => {
+			e.preventDefault();
+			hideModal();
+		});
+
+		document.addEventListener('DOMContentLoaded', updateModalContent);
+
+	</script>
   </body>
 </html>
