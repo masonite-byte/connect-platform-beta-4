@@ -92,16 +92,6 @@ body {
   border-color: #990000;
 }
 
-.students h1 {
-  margin: 0 auto 1rem auto;
-  font-size: 2rem;
-  text-decoration-line: underline;
-  text-decoration-color: #cc0000;
-  text-decoration-thickness: 3px;
-  text-underline-offset: 6px;
-}
-
-
 .search-header {
   display: flex;
   align-items: left; 
