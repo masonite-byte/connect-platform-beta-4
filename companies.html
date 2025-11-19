@@ -1,10 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Raider JobConnect-Companies</title>
+    <link rel="stylesheet" href="companies.css" />
+</head>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Companies Page</title>
+<body>
+    <header class="page-header">
+        <a class="logo-title" href="index.html">
+            <img src="images/ttu.png" alt="Texas Tech Logo" />
+            <p> Red Raider JobConnect</p>
+        </a>
+
+        <nav class="nav-links-desktop">
+            <a href="students.html" class="nav-link">Students</a>
+            <a href="jobs.html" class="nav-link">Jobs</a>
+            <a href="companies.html" class="nav-link active">Companies</a>
+        </nav>
+
+        <button class="login-button" id="login-modal-btn">Login</button>
+    </header>
+</body>
+</head>
     <style>
 
        :root {
@@ -27,17 +46,63 @@
 
 
         body {
-            margin: 0;
-            padding: 0;
             background-color: var(--background-color);
+            font-family: 'Inter', sans-serif;
+            color: var(--text-primary)
         }
 
         .page-header {
-            max-width: 1200px;
-            margin: 2rem auto 0 auto;
-            padding: 0 2rem
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: center;
+            padding: 1rem 2rem;
+            background-color: var(-header-background);
+            border-bottom: 1px solid var(--border-color);
+            box-shadow: var(--shadow-sm);
+            position: sticky;
+            top: 0;
+            z-index: 100
         }
-.page-header {
+
+        .logo-title {
+            display: flex;
+            align-items: center;
+            gap: .75rem;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            justify-self: start;
+            text-decoration: none;
+        }
+
+        .logo-title img {
+            height: 40px;
+        }
+
+        .nav-links-desktop {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+            justify-self: center;
+        }
+
+        .nav-link {
+            padding: .5rem 0;
+            font-weight: 500;
+            color: var(--text-secondary);
+            text-decoration: none;
+            white-space: nowrap;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            transition: color .2s, border-color .2s;
+        }
+
+        .nav-link.active,
+        .nav-link:hover {
+        color: var(--tt-red);
+        border-bottom-color: var(--tt-red);
+        }
+        .page-header {
            max-width: 1200px;
            margin: 2rem auto 0 auto;
            padding: 0 2rem;
@@ -141,6 +206,18 @@
        }
 
 
+        .login-button {
+            background-color:#3A3B3C;
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+            justify-self: end;
+            padding: 10px 15px;
+            border-radius: 10px;
+        }
+
        .info-tag {
            display: flex;
            align-items: center;
@@ -160,35 +237,67 @@
 </head>
 
 <body>
+    <header></header>
     <div class="container">
-       <div class="page-header">
-           <h1 class="page-title">Partner Companies</h1>
-       </div>
-       <div class="grid-container">
-           <a href="#" class="card clickable">
-               <div class="card-header">
-                   <img src="ttu.png" class="company-logo-sm" alt="Company 1 logo" />
-                   <div>
-                       <h3 class="card-title">Placeholder</h3>
-                       <p class="card-subtitle">Placeholder</p>
-                   </div>
-               </div>
-               <div class="card-body">
-                   <p>Placeholder Company Description</p>
-               </div>
-               <div class="card-footer">
-                   <div class="info-tag">
-                       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                           stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                           <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                           <circle cx="12" cy="10" r="3"></circle>
-                       </svg>
-                       <span>Lubbock, TX</span>
-                   </div>
-               </div>
-           </a>
-       </div>
+        <div class="page-header">
+            <h2>Featured Companies</h2>
+        </div>
+        <div class="grid-container">
+            <a href="#" class="card clickable">
+                <div class="card-header">
+                    <img src="images/Hornet.jpg" class="company-logo-sm" alt="Hornet.JPG" />
+                    <div>
+                        <h3 class="card-title">The Hornet</h3>
+                        <p class="card-subtitle">Electrical Engineering</p>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <p>Electrical engineering company based in Charlotte, North Carolina.</p>
+                </div>
+                <div class="card-footer">
+                    <div class="info-tag">
+                        <span>Charlotte, North Carolina</span>
+                    </div>
+                </div>
+            </a>
+
+            <a href="#" class="card clickable">
+                <div class="card-header">
+                    <img src="images/AceofSpades.png" class="company-logo-sm" alt="Company 2 logo" />
+                    <div>
+                        <h3 class="card-title">Ace of Spades</h3>
+                        <p class="card-subtitle">Mechanical Engineering</p>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <p>Mechanical engineering company based in Las Vegas, Nevada.</p>
+                </div>
+                <div class="card-footer">
+                    <div class="info-tag">
+                        <span>Las Vegas, Nevada</span>
+                    </div>
+                </div>
+            </a>
+
+            <a href="#" class="card clickable">
+                <div class="card-header">
+                    <img src="images/PalmTrees.jpg" class="company-logo-sm" alt="Company 3 logo" />
+                    <div>
+                        <h3 class="card-title">Ocean View</h3>
+                        <p class="card-subtitle">Environmental Engineering</p>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <p>Environmental engineering company based in Orange County, California.</p>
+                </div>
+                <div class="card-footer">
+                    <div class="info-tag">
+                        <span>Orange County, California</span>
+                    </div>
+                </div>
+            </a>
+            
+            </div>
     </div>
 </body>
-
 </html>
